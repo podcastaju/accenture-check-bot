@@ -33,7 +33,7 @@ async function checkWebsite() {
     await page.goto(
       "https://indiacampus.accenture.com/candidate/#/login/accenture"
     );
-
+    console.log("enter first website");
     // Log in
     await page.type(
       'input.form-control[name="username"]',
@@ -43,12 +43,13 @@ async function checkWebsite() {
       'input.form-control[name="new-password"]',
       "Ajharulaju123456!!!"
     );
+    console.log("entered login details");
     // Click the "Login" button
     await page.click("a.login"); // Add the appropriate selector for the login button
-
+    
     // Wait for the login to complete (you may need to wait for a specific element)
     await page.waitForSelector("h2.ng-binding", { timeout: 10000 });
-
+    console.log("logged in");
     // Wait for the dynamic content to load
     await page.waitForSelector("div.col-md-6.col-xs-6.ng-binding");
     // Find the element with the class "ng-binding" that contains the text "Submitted: 0"
