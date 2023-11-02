@@ -1,6 +1,7 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
 const TelegramBot = require("node-telegram-bot-api");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +14,18 @@ const checkInterval = 30 * 60 * 1000;
 let lastCheckedValue = null;
 
 async function checkWebsite() {
-  const browser = await puppeteer.launch({ headless: false }); // Set headless to true for production
+  const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    }); // Set headless to true for production
   const page = await browser.newPage();
 
   try {
