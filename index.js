@@ -81,6 +81,9 @@ async function checkWebsite() {
     await browser.close();
   }
 }
+app.get("/", (req, res) => {
+  res.send("This is a text response from Express.");
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
