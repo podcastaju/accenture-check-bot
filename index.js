@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 const telegramToken = "6150609043:AAG-XHC9FhHNREIib4yRBStPI5-2M9MDtJ0";
 const chatId = "863593436";
 
-const checkInterval = 30 * 60 * 1000;
+const checkInterval = 2 * 60 * 60 * 1000;
 
 let lastCheckedValue = null;
 
